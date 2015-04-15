@@ -32,7 +32,7 @@ def kill():
             pass
     _coqtop = None
 
-def launch():
+def launch(args):
     """ This function launch a new process of coqtop """
     global _coqtop
     global _coqtopVersion
@@ -40,7 +40,7 @@ def launch():
     _coqtopVersion = subprocess.check_output(['coqtop', '--version'])
     _coqtop = subprocess.Popen(
             # We need -ide-slave to be able to send XML queries
-            ['coqtop', '-ideslave'],
+            ['coqtop', '-ideslave'] + args,
             stdin = subprocess.PIPE,
             stdout = subprocess.PIPE,
             stderr = subprocess.STDOUT,
